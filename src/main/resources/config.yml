@@ -1,4 +1,9 @@
 settings:
+    prefix: "§8§l❘ §3Game§7Prefix §8§l❘ "
+    join-title: "§eGameTitle"
+    join-subtitle: "§7"
+    join-sound: "NOTE_STICKS"
+    game-type: "GameType"
     lobby:
         world: 'world'
         teleport-location:

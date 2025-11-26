@@ -2,38 +2,128 @@ maps:
     AncientTomb:
         world: 'AncientTomb'
         lobby-location:
-            x: 0.0
-            y: 1100.0
-            z: 0.0
+            x: 1000.0
+            y: 100.0
+            z: 1000.0
             yaw: 0.0
             pitch: 0.0
     Aquarium:
         world: 'Aquarium'
+        lobby-location:
+            x: 1000.0
+            y: 100.0
+            z: 1000.0
+            yaw: 0.0
+            pitch: 0.0
     ArchivesTopFloor:
         world: 'ArchivesTopFloor'
+        lobby-location:
+            x: 1000.0
+            y: 100.0
+            z: 1000.0
+            yaw: 0.0
+            pitch: 0.0
     CruiseShip:
         world: 'CruiseShip'
+        lobby-location:
+            x: 1000.0
+            y: 100.0
+            z: 1000.0
+            yaw: 0.0
+            pitch: 0.0
     Darkfall:
         world: 'Darkfall'
+        lobby-location:
+            x: 1000.0
+            y: 100.0
+            z: 1000.0
+            yaw: 0.0
+            pitch: 0.0
     FunPark:
-        world: 'funpark'
+        world: 'FunPark'
+        lobby-location:
+            x: 1000.0
+            y: 100.0
+            z: 1000.0
+            yaw: 0.0
+            pitch: 0.0
     GoldRush:
         world: 'GoldRush'
+        lobby-location:
+            x: 1000.0
+            y: 100.0
+            z: 1000.0
+            yaw: 0.0
+            pitch: 0.0
     Headquarters:
         world: 'Headquarters'
+        lobby-location:
+            x: 1000.0
+            y: 100.0
+            z: 1000.0
+            yaw: 0.0
+            pitch: 0.0
     Hollywood:
         world: 'Hollywood'
+        lobby-location:
+            x: 1000.0
+            y: 100.0
+            z: 1000.0
+            yaw: 0.0
+            pitch: 0.0
     Library:
         world: 'Library'
+        lobby-location:
+            x: 1000.0
+            y: 100.0
+            z: 1000.0
+            yaw: 0.0
+            pitch: 0.0
     Mountain:
         world: 'Mountain'
+        lobby-location:
+            x: 1000.0
+            y: 100.0
+            z: 1000.0
+            yaw: 0.0
+            pitch: 0.0
     SanPeraticoV2:
         world: 'SanPeraticoV2'
+        lobby-location:
+            x: 1000.0
+            y: 100.0
+            z: 1000.0
+            yaw: 0.0
+            pitch: 0.0
     SkywayPier:
         world: 'SkywayPier'
+        lobby-location:
+            x: 1000.0
+            y: 100.0
+            z: 1000.0
+            yaw: 0.0
+            pitch: 0.0
     Snowfall:
         world: 'Snowfall'
+        lobby-location:
+            x: 1000.0
+            y: 100.0
+            z: 1000.0
+            yaw: 0.0
+            pitch: 0.0
     Towerfall:
         world: 'Towerfall'
+        lobby-location:
+            x: 1000.0
+            y: 100.0
+            z: 1000.0
+            yaw: 0.0
+            pitch: 0.0
     Transport:
         world: 'Transport'
+        lobby-location:
+            x: 1000.0
+            y: 100.0
+            z: 1000.0
+            yaw: 0.0
+            pitch: 0.0
