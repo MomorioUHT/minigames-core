@@ -12,3 +12,13 @@ settings:
             z: 0.0
             yaw: 0.0
             pitch: 0.0
+
+items:
+    game-selector:
+        item: "BLAZE_POWDER"
+        name: "§e§lGame Selector §7(Right Click)"
+        slot: 4
+    leave-game:
+        item: "MAGMA_CREAM"
+        name: "§c§lLeave game §7(Right Click)"
+        slot: 8

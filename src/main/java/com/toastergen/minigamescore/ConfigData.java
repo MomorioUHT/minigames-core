@@ -1,9 +1,6 @@
 package com.toastergen.minigamescore;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Sound;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.configuration.file.FileConfiguration;
 
 public class ConfigData {
@@ -14,6 +11,15 @@ public class ConfigData {
     public final String GAME_TYPE;
 
     public final Sound JOIN_SOUND;
+
+    // Menu
+    public final Material SELECTOR_MATERIAL;
+    public final int SELECTOR_SLOT;
+    public final String SELECTOR_NAME;
+
+    public final Material LEAVE_MATERIAL;
+    public final int LEAVE_SLOT;
+    public final String LEAVE_NAME;
 
     public ConfigData(FileConfiguration config) {
         String worldName = config.getString("settings.lobby.world");
@@ -36,6 +42,14 @@ public class ConfigData {
         this.JOIN_SUBTITLE = config.getString("settings.join-subtitle");
         this.GAME_TYPE = config.getString("settings.game-type");
         this.JOIN_SOUND = praseSound(config.getString("settings.join-sound"));
+
+        this.SELECTOR_MATERIAL = Material.getMaterial(config.getString("items.game-selector.item"));
+        this.SELECTOR_SLOT = config.getInt("items.game-selector.slot");
+        this.SELECTOR_NAME = config.getString("items.game-selector.name");
+
+        this.LEAVE_MATERIAL = Material.getMaterial(config.getString("items.leave-game.item"));
+        this.LEAVE_SLOT = config.getInt("items.leave-game.slot");
+        this.LEAVE_NAME = config.getString("items.leave-game.name");
     }
 
     private Sound praseSound(String soundName) {

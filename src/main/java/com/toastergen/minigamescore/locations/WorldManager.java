@@ -3,6 +3,7 @@ package com.toastergen.minigamescore.locations;
 import com.toastergen.minigamescore.ConfigData;
 import com.toastergen.minigamescore.gameinstances.GameArena;
 import com.toastergen.minigamescore.gameinstances.GameState;
+import com.toastergen.minigamescore.gui.LobbyItemManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -19,6 +20,7 @@ public class WorldManager {
     private final JavaPlugin plugin;
     private final File templatesFolder;
     private final ConfigData configData;
+    private LobbyItemManager lobbyItemManager;
     private final Map<String, GameArena> activeArenas = new HashMap<>();
 
     private final Map<UUID, GameArena> playerGameMap = new HashMap<>();
@@ -30,6 +32,10 @@ public class WorldManager {
         if (!templatesFolder.exists()) {
             templatesFolder.mkdirs();
         }
+    }
+
+    public void setLobbyItemManager(LobbyItemManager manager) {
+        this.lobbyItemManager = manager;
     }
 
     public void initializeArenas(YamlConfiguration mapData) {
@@ -48,11 +54,14 @@ public class WorldManager {
             plugin.getLogger().warning("No templates " + templateName);
             return null;
         }
+
         Random random = new Random();
-        int num = random.nextInt(701) + 200;
-        char letter = (char) ('a' + random.nextInt(26));
-        String randomID = "mini" + num + letter;
-        String newWorldName = templateName + "-" + randomID;
+        int num1 = random.nextInt(11) + 10;
+        int num2 = random.nextInt(9) + 1;
+        char letter1 = (char) ('a' + random.nextInt(26));
+        char letter2 = (char) ('a' + random.nextInt(26));
+        String randomID = "" + num1 + letter1 + num2 + letter2;
+        String newWorldName = randomID + "-" + templateName;
 
         File targetDir = new File(Bukkit.getWorldContainer(), newWorldName);
         plugin.getLogger().info("Creating game " + newWorldName + "...");
@@ -157,9 +166,13 @@ public class WorldManager {
 
                 leaveGame(player);
                 player.teleport(arena.getSpawnLocation());
-
+                player.getInventory().clear();
                 arena.addPlayer();
                 playerGameMap.put(player.getUniqueId(), arena);
+
+                if (lobbyItemManager != null) {
+                    lobbyItemManager.giveLeaveItem(player);
+                }
 
                 player.sendTitle(configData.JOIN_TITLE, configData.JOIN_SUBTITLE);
                 player.playSound(player.getLocation(), configData.JOIN_SOUND, 1.0f, 1.0f);
@@ -183,6 +196,10 @@ public class WorldManager {
         }
 
         player.teleport(configData.getGlobalLobbyLocation());
+        player.getInventory().clear();
+        if (lobbyItemManager != null) {
+            lobbyItemManager.giveSelectorItem(player);
+        }
     }
 
     public Collection<GameArena> getActiveArenas() {

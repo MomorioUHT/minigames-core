@@ -1,7 +1,10 @@
 package com.toastergen.minigamescore;
 
 import com.toastergen.minigamescore.gui.GameSelector;
+import com.toastergen.minigamescore.gui.LobbyItemManager;
 import com.toastergen.minigamescore.locations.WorldManager;
+import org.bukkit.Bukkit;
+import org.bukkit.Difficulty;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -19,6 +22,7 @@ public class Main extends JavaPlugin {
 
     private GameSelector gameSelector;
     private WorldManager worldManager;
+    private LobbyItemManager lobbyItemManager;
 
     @Override
     public void onEnable() {
@@ -29,16 +33,26 @@ public class Main extends JavaPlugin {
         if (!mapFile.exists()) saveResource("maps.yml", false);
         mapData = YamlConfiguration.loadConfiguration(mapFile);
 
-
         worldManager = new WorldManager(this, configData);
         getLogger().info("Loading maps...");
         worldManager.initializeArenas(mapData);
 
         gameSelector= new GameSelector(worldManager, configData);
+        lobbyItemManager = new LobbyItemManager(configData, gameSelector, worldManager);
         getServer().getPluginManager().registerEvents(gameSelector, this);
+        getServer().getPluginManager().registerEvents(lobbyItemManager, this);
 
         getCommand("leave").setExecutor(this);
-        getCommand("menu").setExecutor(this);
+
+        worldManager.setLobbyItemManager(lobbyItemManager);
+
+        for (World world : Bukkit.getWorlds()) {
+            world.setDifficulty(Difficulty.PEACEFUL);
+
+            world.setGameRuleValue("doMobSpawning", "false");
+            world.setGameRuleValue("doDaylightCycle", "false");
+            world.setGameRuleValue("doFireTick", "false");
+        }
     }
 
     @Override
@@ -57,11 +71,6 @@ public class Main extends JavaPlugin {
 
         if (command.getName().equalsIgnoreCase("leave")) {
             worldManager.leaveGame(player);
-            return true;
-        }
-
-        if (command.getName().equalsIgnoreCase("menu")) {
-            gameSelector.openGUI(player);
             return true;
         }
 

@@ -4,15 +4,14 @@ import com.toastergen.minigamescore.ConfigData;
 import com.toastergen.minigamescore.gameinstances.GameArena;
 import com.toastergen.minigamescore.gameinstances.GameState;
 import com.toastergen.minigamescore.locations.WorldManager;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.FireworkEffectMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
@@ -41,41 +40,50 @@ public class GameSelector implements Listener {
     }
 
     private ItemStack createIcon(GameArena arena) {
-        ItemStack item;
+        ItemStack item = new ItemStack(Material.FIREWORK_CHARGE);
+        ItemMeta meta = item.getItemMeta();
+        FireworkEffectMeta fireMeta = (FireworkEffectMeta) meta;
+
         String name;
         String state;
-        short colorData;
+        Color color;
 
         switch (arena.getState()) {
             case WAITING:
-                colorData = 5;
+                color = Color.LIME;
                 state = "§aLobby";
                 name = "§a§l" + arena.getMapName();
                 break;
+
             case STARTING:
-                colorData = 4;
+                color = Color.ORANGE;
                 state = "§6Starting";
                 name = "§e§l" + arena.getMapName();
                 break;
+
             case INGAME:
-                colorData = 14;
+                color = Color.RED;
                 state = "§cInGame";
                 name = "§c§l" + arena.getMapName();
                 break;
+
             case ENDING:
-                colorData = 15;
+                color = Color.BLACK;
                 state = "§dEnding";
                 name = "§d§l" + arena.getMapName();
                 break;
+
             default:
-                colorData = 7;
+                color = Color.GRAY;
                 state = "§7Booting";
                 name = "§7§lWaiting for open lobby...";
         }
 
-        item = new ItemStack(Material.STAINED_GLASS, 1, colorData);
-        ItemMeta meta = item.getItemMeta();
-        meta.setDisplayName(name);
+        FireworkEffect effect = FireworkEffect.builder()
+                .withColor(color)
+                .build();
+        fireMeta.setEffect(effect);
+        fireMeta.setDisplayName(name);
 
         List<String> lore = new ArrayList<>();
         lore.add("§8" + configData.GAME_TYPE);
@@ -87,7 +95,9 @@ public class GameSelector implements Listener {
         lore.add("§eClick to join!");
         meta.setLore(lore);
 
-        item.setItemMeta(meta);
+//        fireMeta.setLore(lore);
+
+        item.setItemMeta(fireMeta);
         return item;
     }
 
