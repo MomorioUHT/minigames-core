@@ -49,13 +49,13 @@ public class GameSelector implements Listener {
         switch (arena.getState()) {
             case WAITING:
                 colorData = 5;
-                state = "§eLobby";
-                name = "§e§l" + arena.getMapName();
+                state = "§aLobby";
+                name = "§a§l" + arena.getMapName();
                 break;
             case STARTING:
                 colorData = 4;
                 state = "§6Starting";
-                name = "§6§l" + arena.getMapName();
+                name = "§e§l" + arena.getMapName();
                 break;
             case INGAME:
                 colorData = 14;
