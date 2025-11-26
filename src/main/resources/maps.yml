@@ -1,0 +1,39 @@
+maps:
+    AncientTomb:
+        world: 'AncientTomb'
+        lobby-location:
+            x: 0.0
+            y: 1100.0
+            z: 0.0
+            yaw: 0.0
+            pitch: 0.0
+    Aquarium:
+        world: 'Aquarium'
+    ArchivesTopFloor:
+        world: 'ArchivesTopFloor'
+    CruiseShip:
+        world: 'CruiseShip'
+    Darkfall:
+        world: 'Darkfall'
+    FunPark:
+        world: 'funpark'
+    GoldRush:
+        world: 'GoldRush'
+    Headquarters:
+        world: 'Headquarters'
+    Hollywood:
+        world: 'Hollywood'
+    Library:
+        world: 'Library'
+    Mountain:
+        world: 'Mountain'
+    SanPeraticoV2:
+        world: 'SanPeraticoV2'
+    SkywayPier:
+        world: 'SkywayPier'
+    Snowfall:
+        world: 'Snowfall'
+    Towerfall:
+        world: 'Towerfall'
+    Transport:
+        world: 'Transport'
